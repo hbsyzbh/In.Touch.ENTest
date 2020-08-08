@@ -52,7 +52,7 @@ void PIN_MANAGER_Initialize(void)
     /**
     LATx registers
     */
-    LATE = 0x00;
+    LATE = 0x1C;
     LATD = 0x00;
     LATA = 0x00;
     LATF = 0x00;
@@ -63,7 +63,7 @@ void PIN_MANAGER_Initialize(void)
     /**
     TRISx registers
     */
-    TRISE = 0x3F;
+    TRISE = 0x23;
     TRISF = 0xFE;
     TRISA = 0x3F;
     TRISG = 0x10;

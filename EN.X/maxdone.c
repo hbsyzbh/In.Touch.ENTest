@@ -108,9 +108,9 @@ void SetLed(unsigned char leds)
 	unsigned char g = leds & 0x2;
 	unsigned char r = leds & 0x4;
 
-	//P15_bit.no0 = ! b;
-	//P15_bit.no1 = ! g;
-	//P15_bit.no2 = ! r;
+	IO_RE4_LAT = ! b;
+	IO_RE3_LAT = ! g;
+	IO_RE2_LAT = ! r;
 }
 
 

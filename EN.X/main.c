@@ -67,7 +67,7 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-    UART2_Sendstr("Zhubh@maxdone.net");
+    //UART2_Sendstr("Zhubh@maxdone.net");
     while (1)
     {
         // Add your application code
