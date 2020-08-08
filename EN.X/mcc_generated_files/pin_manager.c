@@ -65,7 +65,7 @@ void PIN_MANAGER_Initialize(void)
     */
     TRISE = 0x23;
     TRISF = 0xFE;
-    TRISA = 0x3F;
+    TRISA = 0x3C;
     TRISG = 0x10;
     TRISB = 0xFF;
     TRISC = 0xBF;
@@ -74,7 +74,7 @@ void PIN_MANAGER_Initialize(void)
     /**
     PCFG setting
     */   
-    ADCON1bits.PCFG = 0x00;
+    ADCON1bits.PCFG = 0x0F;
 
 
     

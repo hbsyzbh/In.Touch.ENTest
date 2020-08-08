@@ -72,6 +72,7 @@ void main(void)
     {
         // Add your application code
         doUartTask();
+		doKeyTask();
     }
 }
 /**

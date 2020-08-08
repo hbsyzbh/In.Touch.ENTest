@@ -221,3 +221,40 @@ void on_uart1_error(void)
 	startWaitForNewCmd();
 }
 
+void doKeyTask(void)
+{
+	static unsigned char keyState  = 0;
+	static unsigned char lastKeyValue = 0xFF;
+
+	unsigned char key = IO_RC5_GetValue();
+
+	if(lastKeyValue != 0xFF)
+	{
+		if(lastKeyValue != key) {
+			if(key == 0) {  //ÏÂ½µÑØ
+				switch (keyState)
+				{
+					case 0:
+						IO_RA0_SetHigh();
+						IO_RA1_SetLow();
+						keyState++;
+						break;
+					case 1:
+						IO_RA0_SetLow();
+						IO_RA1_SetHigh();
+						keyState++;
+						break;
+					case 2:
+						IO_RA0_SetLow();
+						IO_RA1_SetLow();
+						
+						keyState++;
+						break;
+				}
+			}
+		}
+	}
+
+	lastKeyValue = key;	
+}
+
