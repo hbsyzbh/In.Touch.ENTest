@@ -16,6 +16,8 @@ void UART2_Sendstr(char *str);
 void doUartTask(void);
 void doKeyTask(void);
 
+bool I2C1_MasterOpen(void);
+
 extern void on_uart1_error(void);
 extern void on_uart1_receiveend(void);
 extern unsigned char eusart1Want;

@@ -124,7 +124,7 @@ static unsigned char TestMRF89XA()
 	return ACK_NG;
 }
 /* I2C1 Register Level interfaces */
-static inline bool I2C1_MasterOpen(void)
+bool I2C1_MasterOpen(void)
 {
     if(!SSP1CON1bits.SSPEN)
     {
@@ -234,13 +234,16 @@ static inline void I2C1_MasterSetIrq(void)
 
 static inline void I2C1_MasterWaitForEvent(void)
 {
-    while(1)
+	unsigned int delay = 0;
+    for(delay = 0; delay < 50000; delay++)
     {
         if(PIR1bits.SSP1IF)
         {    
             break;
         }
     }
+	
+	I2C1_MasterClearIrq();
 }
 
 void I2C1_syncWrite(unsigned char data)
@@ -261,6 +264,20 @@ unsigned char I2C1_syncRead(void)
 	return data;
 }
 
+void I2C1_syncStart(void)
+{
+	I2C1_MasterClearIrq();
+	I2C1_MasterStart();
+	I2C1_MasterWaitForEvent();
+}
+
+void I2C1_syncStop(void)
+{
+	I2C1_MasterClearIrq();
+	I2C1_MasterStop();
+	I2C1_MasterWaitForEvent();
+}
+
 unsigned char TestI2CE2PROM()
 {
 	unsigned char MARK[] = " Maxdone";
@@ -271,11 +288,10 @@ unsigned char TestI2CE2PROM()
 //	I2C1_WriteNBytes(0xA0, MARK, 8);
 //	I2C1_ReadNBytes(0xA0, buff, 8);
 
-	I2C1_MasterOpen();
+
 
 //Ð´
-	I2C1_MasterSendAck();
-	I2C1_MasterStart();
+	I2C1_syncStart();
 
 	I2C1_syncWrite(0xA0);
 
@@ -283,26 +299,29 @@ unsigned char TestI2CE2PROM()
 	{
 		I2C1_syncWrite(MARK[i]);
 	}
-	I2C1_MasterStop();
+	I2C1_syncStop();
 
 //¶Á
-	I2C1_MasterStart();
+	I2C1_syncStart();
 	I2C1_syncWrite(0xA0);
 	I2C1_syncWrite(0x00);
 
-	I2C1_MasterStart();
+	I2C1_syncStart();
 	I2C1_syncWrite(0xA1);
 	for(i = 1; i <7; i++)
 	{
-		buff[i] = I2C1_syncRead();
+		buff[i] = I2C1_syncRead();	
+		I2C1_MasterSendAck();	
+		I2C1_MasterWaitForEvent();
 	}
 
-	I2C1_MasterSendNack();
 	buff[i] = I2C1_syncRead();	
-	I2C1_MasterStop();
+	I2C1_MasterSendNack();	
+	I2C1_MasterWaitForEvent();
+	I2C1_syncStop();
 
 
-	I2C1_MasterClose();
+	//I2C1_MasterClose();
 
 	if( 0 == memcmp(MARK, buff, 8)) {
 		return ACK_OK;

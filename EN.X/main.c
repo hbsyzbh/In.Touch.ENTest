@@ -68,6 +68,7 @@ void main(void)
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
     //UART2_Sendstr("Zhubh@maxdone.net");
+	I2C1_MasterOpen();
     while (1)
     {
         // Add your application code
