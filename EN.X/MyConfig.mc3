@@ -25,12 +25,12 @@
          <string>class com.microchip.mcc.mcu8.modules.mssp.MSSP</string>
       </entry>
       <entry>
-         <string>RESET</string>
-         <string>class com.microchip.mcc.mcu8.systemManager.reset.RESET</string>
-      </entry>
-      <entry>
          <string>EUSART1</string>
          <string>class com.microchip.mcc.mcu8.modules.eusart.EUSART</string>
+      </entry>
+      <entry>
+         <string>RESET</string>
+         <string>class com.microchip.mcc.mcu8.systemManager.reset.RESET</string>
       </entry>
       <entry>
          <string>Interrupt Module</string>
@@ -1187,7 +1187,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="MSSP1" name="enableI2cInterrupt"/>
-         <value>false</value>
+         <value>true</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="EUSART1" registerAlias="TXSTA" settingAlias="TX9" alias="9-bit"/>
@@ -1767,7 +1767,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="MSSP1" registerAlias="BCLI" settingAlias="enable"/>
-         <value>disabled</value>
+         <value>enabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="Pin Module" registerAlias="TRISG" settingAlias="TRISG4" alias="input"/>
@@ -3267,7 +3267,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="MSSP1" name="isInterruptDriven"/>
-         <value>false</value>
+         <value>true</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="Pin Module" registerAlias="LATC" settingAlias="LATC0" alias="clear"/>
@@ -4011,7 +4011,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="MSSP1" registerAlias="SSPI" settingAlias="enable"/>
-         <value>disabled</value>
+         <value>enabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="Pin Module" registerAlias="LATC" settingAlias="LATC0" alias="set"/>
@@ -4107,7 +4107,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="MSSP1" name="enableSpiInterrupt"/>
-         <value>false</value>
+         <value>true</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="MSSP1" registerAlias="SSPSTAT" settingAlias="D_nA" alias="lastbyte_address"/>
@@ -4248,16 +4248,16 @@
    </tokenMap>
    <generatedFileHashHistoryMap class="java.util.HashMap">
       <entry>
+         <file>mcc_generated_files\interrupt_manager.h</file>
+         <hash>7d5713911454131a2ef400729042b164d9580495176c8da6361feb1c54cb1b78</hash>
+      </entry>
+      <entry>
          <file>mcc_generated_files\mcc.h</file>
          <hash>1fe0e7d6593a47458776997ceb1777e594e8c23ee9acbaf46a1adc0baea0ff5a</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\device_config.h</file>
          <hash>9af7eb4a973e6134df4491b7eddc7a3663fb3c6d3bc2a7feec1996bd1adf4b18</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\interrupt_manager.h</file>
-         <hash>7d5713911454131a2ef400729042b164d9580495176c8da6361feb1c54cb1b78</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\eusart1.h</file>
@@ -4289,11 +4289,15 @@
       </entry>
       <entry>
          <file>mcc_generated_files\i2c1_master.h</file>
-         <hash>538f568f5b2bd06f6c03521d9869f1fd61ef7482ad68ad18d50c5c53a742a591</hash>
+         <hash>f570471a6140e0385ad1138620bb7f7866ee03e60b36915fd00b39f946264840</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\examples\i2c1_master_example.h</file>
          <hash>5dc60973f36a8c1a99905b93eb4aa7af64e4003320f57dd84ac06c8cac714f3c</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\interrupt_manager.c</file>
+         <hash>164b68c09b5602c385ef19edee2ebf855e15c472bb692247cedae2c012858345</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\eth.h</file>
@@ -4304,12 +4308,8 @@
          <hash>53f89453e3b43f32cbad453533b4b086ec268008ec3bbae486a5b1c9e8941646</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\interrupt_manager.c</file>
-         <hash>96865d81da91567cbf13286a3904d2608e8ffa7c02b106431dc63fbc57fb38c6</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files\i2c1_master.c</file>
-         <hash>24fd0cc810182e2710317cb70554a7f94d8394e9c0041a09e7ce21f5fd5e28eb</hash>
+         <hash>b299da1c1e4cb87b90cc216b2f20c2044048b57e87c52d38565fe2a51120fa43</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\eusart1.c</file>

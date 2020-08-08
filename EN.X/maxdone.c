@@ -1,4 +1,5 @@
 #include "mcc_generated_files/mcc.h"
+#include "mcc_generated_files/examples/i2c1_master_example.h"
 #include "maxdone.h"
 unsigned char debug = 1;
 void UART2_Sendstr(char *str)
@@ -124,10 +125,32 @@ static unsigned char TestMRF89XA()
 	return ACK_NG;
 }
 
+unsigned char TestI2CE2PROM()
+{
+	const unsigned char MARK[] = "Maxdone";
+	unsigned char buff[8] = {0};
+
+	I2C1_WriteNBytes(0, MARK, 8);
+	I2C1_ReadNBytes(0, buff, 8);
+
+	if( 0 == strncmp(MARK, buff, 7)) {
+		return ACK_OK;
+	}
+	
+	return ACK_NG;
+}
+
+unsigned char TestEthernet()
+{
+	return ACK_NG;
+}
+
 static void analysisCmd()
 {
 
 	ackbuff[ACK_CMD_POS] = cmd;
+	ackbuff[ACK_LEN_POS] = 1;
+	
 
 	switch(cmd) {
 	case Cmd_getType:
@@ -142,6 +165,16 @@ static void analysisCmd()
 
 	case Cmd_testRF:
 		ackbuff[ACK_DATA_POS] = TestMRF89XA();
+		R_UART2_Send(ackbuff, 	ACK_DATA_POS + 1);
+		break;
+
+	case Cmd_testI2CE2prom:
+		ackbuff[ACK_DATA_POS] = TestI2CE2PROM();
+		R_UART2_Send(ackbuff, 	ACK_DATA_POS + 1);
+		break;
+		
+	case Cmd_testEthernet:
+		ackbuff[ACK_DATA_POS] = TestEthernet();
 		R_UART2_Send(ackbuff, 	ACK_DATA_POS + 1);
 		break;
 
