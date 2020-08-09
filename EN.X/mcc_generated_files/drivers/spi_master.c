@@ -1,26 +1,3 @@
-/**
-  ETH Generated Driver API Header File
-
-  @Company
-    Microchip Technology Inc.
-
-  @File Name
-    eth.h
-
-  @Summary
-    This is the generated header file for the ETH driver using MPLAB(c) Code Configurator
-
-  @Description
-    This header file provides APIs for driver for ETH.
-    Generation Information :
-        Product Revision  :  MPLAB(c) Code Configurator - 4.85.0
-        Device            :  PIC18F67J60
-        Driver Version    :  2.00
-    The generated drivers are tested against the following:
-        Compiler          :  XC8 1.35
-        MPLAB             :  MPLAB X 3.40
-*/
-
 /*
     (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
     software and any derivatives exclusively with Microchip products.
@@ -43,56 +20,23 @@
     TERMS.
 */
 
-#ifndef _ETH_H
-#define _ETH_H
-
 /**
   Section: Included Files
-*/
+ */
 
-#include <xc.h>
-#include <stdbool.h>
-#include <stdint.h>
-
-#ifdef __cplusplus  // Provide C++ Compatibility
-
-    extern "C" {
-
-#endif
+#include "spi_master.h"
 
 
-/**
-  Section: ETH APIs
-*/
+const spi_master_functions_t spiMaster[] = {   
+};
 
-/**
-  @Summary
-    Initialization routine that takes inputs from the ETH GUI.
-
-  @Description
-    This routine initializes the ETH driver.
-    This routine must be called before any other ETH routine is called.
-
-  @Preconditions
-    None
-
-  @Param
-    None
-
-  @Returns
-    None
-
-  @Comment
-    
-*/
-void ETH_Initialize(void);
-
-#ifdef __cplusplus  // Provide C++ Compatibility
+//This function serves keep backwards compatibility with older api users
+bool spi_master_open(spi_master_configurations_t config){
+    switch(config){
+        default:
+            return 0;
     }
-
-#endif
-
-#endif  // _ETH_H
+}
 /**
  End of File
-*/
+ */

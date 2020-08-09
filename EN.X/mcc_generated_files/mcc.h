@@ -53,8 +53,10 @@
 #include <stdbool.h>
 #include <conio.h>
 #include "interrupt_manager.h"
+#include "tmr1.h"
 #include "eusart1.h"
-#include "eth.h"
+#include "TCPIPLibrary/network.h"
+#include "drivers/spi_master.h"
 
 
 
