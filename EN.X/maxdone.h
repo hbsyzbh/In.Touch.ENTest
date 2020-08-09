@@ -23,6 +23,8 @@ extern void on_uart1_receiveend(void);
 extern unsigned char eusart1Want;
 extern unsigned char * eusart1Data;
 
+extern unsigned char ethInited;
+
 #ifdef	__cplusplus
 }
 #endif

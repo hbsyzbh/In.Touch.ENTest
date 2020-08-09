@@ -493,6 +493,8 @@ void doKeyTask(void)
 						IO_RA0_SetLow();
 						IO_RA1_SetLow();
 						
+						Network_Init();
+						ethInited = 1;
 						keyState++;
 						break;
 				}

@@ -55,7 +55,6 @@ void SYSTEM_Initialize(void)
     OSCILLATOR_Initialize();
     TMR1_Initialize();
     EUSART1_Initialize();
-    Network_Init();
 }
 
 void OSCILLATOR_Initialize(void)

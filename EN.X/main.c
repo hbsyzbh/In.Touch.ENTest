@@ -44,6 +44,8 @@
 #include "mcc_generated_files/mcc.h"
 #include "maxdone.h"
 
+unsigned char ethInited = 0;
+
 /*
                          Main application
  */
@@ -71,7 +73,9 @@ void main(void)
 	I2C1_MasterOpen();
     while (1)
     {
-        // Add your application code
+        // Add your application code        
+		if(ethInited)
+	        Network_Manage();
         doUartTask();
 		doKeyTask();
     }
