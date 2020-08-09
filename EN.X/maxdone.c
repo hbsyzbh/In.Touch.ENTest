@@ -126,16 +126,13 @@ static unsigned char TestMRF89XA()
 /* I2C1 Register Level interfaces */
 bool I2C1_MasterOpen(void)
 {
-    if(!SSP1CON1bits.SSPEN)
-    {
-        SSP1STAT = 0x00;
-        SSP1CON1 = 0x08;
-        SSP1CON2 = 0x00;
-        SSP1ADD = 0x3D;
-        SSP1CON1bits.SSPEN = 1;
-        return true;
-    }
-    return false;
+    SSP1CON1bits.SSPEN = 0;
+    SSP1STAT = 0x80;
+    SSP1CON1 = 0x08;
+    SSP1CON2 = 0x00;
+    SSP1ADD = 0x9F;
+    SSP1CON1bits.SSPEN = 1;
+    return true;
 }
 
 static inline void I2C1_MasterClose(void)
@@ -258,8 +255,9 @@ unsigned char I2C1_syncRead(void)
 	unsigned char data;
 
 	I2C1_MasterClearIrq();
-	data = I2C1_MasterGetRxData();
+	I2C1_MasterStartRx();
 	I2C1_MasterWaitForEvent();
+	data = I2C1_MasterGetRxData();
 
 	return data;
 }
