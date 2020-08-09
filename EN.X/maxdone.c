@@ -276,55 +276,78 @@ void I2C1_syncStop(void)
 	I2C1_MasterWaitForEvent();
 }
 
+static void I2CE2PROMRead(unsigned char addr, unsigned char *data, unsigned char len)
+{
+	unsigned char i;
+
+    I2C1_syncStart();
+    I2C1_syncWrite(0xA0);
+    I2C1_syncWrite(addr);
+
+    I2C1_syncStart();
+    I2C1_syncWrite(0xA1);
+    for(i = 0; i <len-1; i++)
+    {
+        data[i] = I2C1_syncRead();	
+        I2C1_MasterSendAck();	
+        I2C1_MasterWaitForEvent();
+    }
+
+    data[i] = I2C1_syncRead();	
+    I2C1_MasterSendNack();	
+    I2C1_MasterWaitForEvent();
+    I2C1_syncStop();
+}
+
+static void I2CE2PROMWrite(unsigned char addr, unsigned char *data, unsigned char len)
+{
+    unsigned int delay;
+    unsigned char i;
+    
+    I2C1_syncStart();
+
+	I2C1_syncWrite(0xA0);
+	I2C1_syncWrite(addr);
+
+	for(i = 0; i <len; i++)
+	{
+		I2C1_syncWrite(data[i]);
+	}
+	I2C1_syncStop();
+    
+    //wait e2prom write done;
+    for(delay = 0; delay < 50000; delay++)
+    {
+        ;
+    }
+}
+
 unsigned char TestI2CE2PROM()
 {
-	unsigned char MARK[] = " Maxdone";
-	unsigned char buff[8] = {0};
-	unsigned char i;
-	MARK[0] = buff[0] = 0;
+	unsigned char MARK[] = "Maxdone";
+	unsigned char buff[9] = {0};
 
 //	I2C1_WriteNBytes(0xA0, MARK, 8);
 //	I2C1_ReadNBytes(0xA0, buff, 8);
 
 
+#if 1
+    I2CE2PROMWrite(0, MARK, 8);
+    I2CE2PROMRead(0, buff, 8);
 
-//Ð´
-	I2C1_syncStart();
-
-	I2C1_syncWrite(0xA0);
-
-	for(i = 0; i <8; i++)
-	{
-		I2C1_syncWrite(MARK[i]);
-	}
-	I2C1_syncStop();
-
-//¶Á
-	I2C1_syncStart();
-	I2C1_syncWrite(0xA0);
-	I2C1_syncWrite(0x00);
-
-	I2C1_syncStart();
-	I2C1_syncWrite(0xA1);
-	for(i = 1; i <7; i++)
-	{
-		buff[i] = I2C1_syncRead();	
-		I2C1_MasterSendAck();	
-		I2C1_MasterWaitForEvent();
-	}
-
-	buff[i] = I2C1_syncRead();	
-	I2C1_MasterSendNack();	
-	I2C1_MasterWaitForEvent();
-	I2C1_syncStop();
-
-
-	//I2C1_MasterClose();
+#else
+    I2CE2PROMWrite(0, MARK, 8);
+    for(;;)
+    {
+        I2CE2PROMRead(0, buff, 6);
+        buff[6] = 0;
+        UART2_Sendstr(buff);
+    }
+#endif
 
 	if( 0 == memcmp(MARK, buff, 8)) {
 		return ACK_OK;
 	}
-	
 	return ACK_NG;
 }
 
@@ -376,6 +399,7 @@ static void analysisCmd()
 void doUartTask(void)
 {
 	//TestMRF89XA();
+    //TestI2CE2PROM();
 
 	switch(UartState)
 	{
