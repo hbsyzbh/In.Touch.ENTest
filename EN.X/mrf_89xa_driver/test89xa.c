@@ -60,6 +60,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 #include "drv_mrf.h"
 #include "drv_mrf_89xa.h"
+#include "../maxdone.h"
 
 BOOL PHY_IRQ1_En;
 
@@ -67,18 +68,51 @@ BOOL IRQ0_Received;
 
 static void SPI_delay(void)
 {
-    unsigned char delay = 255;
+    unsigned char delay = 100;
     
     while(delay--);
 }
+
+/*MRF89XA ??SPI ??0,0??????SCK ???????????
+ * CS ????????SDI ?????17?????????SCK ?????18????????????
+ * SDO ?????????SCK ?????????????????????????MostSignificant bit? MSb?
+ */
+
 void SPIPut(unsigned char data)
 {
+    int i;
     
+    SPI_SCK = 0;
+    SPI_delay();
+    for(i = 7; i >= 0; i--)
+    {
+       SPI_SDO = ((data & (0x01 << i)) != 0);
+       SPI_delay();
+       SPI_SCK = 1;
+       SPI_delay();
+       SPI_SCK = 0;
+    }
 }
 
 unsigned char SPIGet(void)
 {
+    unsigned char result = 0;
+    int i;
     
+    SPI_SCK = 0;
+    SPI_delay();
+    for(i = 7; i >= 0; i--)
+    {
+       if(SPI_SDI) {
+           result &= (0x01 << i);
+       }               
+       SPI_SCK = 1;
+       SPI_delay();
+       SPI_SCK = 0;
+       SPI_delay();
+    }
+    
+    return result;
 }
         
 //Defines for RadioDriver.c file
@@ -190,7 +224,7 @@ void PrintMiniStatus(BYTE);
 void ResetMRF89XA(void);
 void Setup(void);
 	
-void drv_testMRF89XA()
+void drv_testMRF89XA(void)
 {
 	BYTE TxPacket_Len;
 	BYTE i;
@@ -204,10 +238,18 @@ void drv_testMRF89XA()
 }
 
 unsigned char Regs[32];
-void drv_initMRF89XA()
+
+void onIRQ1(void)
+{
+	IRQ1_Received = 1;
+}
+
+void drv_initMRF89XA(void)
 {
 	unsigned char i;
 	//call all the initialization routines
+    INT2_SetInterruptHandler(onIRQ1);
+    
 	MRF89XAInit();			//initialize MRF89XA
 	Setup();				//Configure the basic settings
 
@@ -414,9 +456,4 @@ void ResetMRF89XA(void)
 	PingPong_Package = 100;
 	MRF89XAInit();
 	//CONSOLE_PutString ((char *)"MRF89XA Device has been reset \r\n");
-}
-
-void onIRQ1(void)
-{
-	IRQ1_Received = 1;
 }

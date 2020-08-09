@@ -8,6 +8,8 @@
 #ifndef MAXDONE_H
 #define	MAXDONE_H
 
+#include <stdbool.h>
+
 #ifdef	__cplusplus
 extern "C" {
 #endif
@@ -24,6 +26,9 @@ extern unsigned char eusart1Want;
 extern unsigned char * eusart1Data;
 
 extern unsigned char ethInited;
+
+void drv_initMRF89XA(void);
+void drv_testMRF89XA(void);
 
 #ifdef	__cplusplus
 }

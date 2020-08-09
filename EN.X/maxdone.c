@@ -1,5 +1,6 @@
 #include "mcc_generated_files/mcc.h"
 #include "maxdone.h"
+
 unsigned char debug = 1;
 void UART2_Sendstr(char *str)
 {
@@ -119,8 +120,8 @@ const unsigned char hardwareType[] = {ACK_HEAD, 0, 1, 0x0E};
 unsigned char ackbuff[16] = {ACK_HEAD, 0};
 
 static unsigned char TestMRF89XA()
-{
-	//drv_testMRF89XA();
+{   
+	drv_testMRF89XA();
 	return ACK_NG;
 }
 /* I2C1 Register Level interfaces */
@@ -399,7 +400,6 @@ static void analysisCmd()
 void doUartTask(void)
 {
 	//TestMRF89XA();
-    //TestI2CE2PROM();
 
 	switch(UartState)
 	{
