@@ -125,7 +125,7 @@
 ////
 ////#endif
 ////
-
+#include "../mcc_generated_files/pin_manager.h"
 #define PACKET_LEN 64
 #define PAYLOAD_LEN 64
 
@@ -145,7 +145,7 @@ void SetRFMode(BYTE);								//Program RF mode
 
 
 extern BOOL PHY_IRQ1_En;
-extern BOOL Config_nCS;
-extern BOOL Data_nCS;
+#define Config_nCS      IO_RB0_LAT
+#define Data_nCS        IO_RA5_LAT
 void SPIPut(unsigned char);
 unsigned char SPIGet(void);

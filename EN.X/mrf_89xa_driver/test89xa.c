@@ -62,11 +62,15 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "drv_mrf_89xa.h"
 
 BOOL PHY_IRQ1_En;
-BOOL Config_nCS;
-BOOL Data_nCS;
 
 BOOL IRQ0_Received;
 
+static void SPI_delay(void)
+{
+    unsigned char delay = 255;
+    
+    while(delay--);
+}
 void SPIPut(unsigned char data)
 {
     
