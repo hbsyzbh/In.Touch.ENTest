@@ -30,14 +30,15 @@ ip_db_info_t ip_database_info;
 
 void ipdb_init(void)
 {
-    ip_database_info.ipv4_myAddress = 0;
-    ip_database_info.ipv4_subnetMask = 0;
-    ip_database_info.ipv4_router = 0;
-    for(uint8_t x=0; x < MAX_DNS; x ++)
-        ip_database_info.ipv4_dns[x] = 0;
+    ip_database_info.ipv4_myAddress = 0xc0a80080;
+    ip_database_info.ipv4_subnetMask = 0xffffff00;
+    ip_database_info.ipv4_router = 0xc0a80000;
+    ip_database_info.ipv4_dns[0] = 0;
+    ip_database_info.ipv4_dns[1] = 0;
     for(uint8_t x=0; x < MAX_NTP; x++)
         ip_database_info.ipv4_ntpAddress[x] = 0;
     ip_database_info.ipv4_tftpAddress = 0;
+    
 }
 
 uint32_t makeStrToIpv4Address(char *str)

@@ -22,7 +22,6 @@
           <itemPath>mcc_generated_files/TCPIPLibrary/arpv4.h</itemPath>
           <itemPath>mcc_generated_files/TCPIPLibrary/log.h</itemPath>
           <itemPath>mcc_generated_files/TCPIPLibrary/rtcc.h</itemPath>
-          <itemPath>mcc_generated_files/TCPIPLibrary/dhcp_client.h</itemPath>
           <itemPath>mcc_generated_files/TCPIPLibrary/udpv4.h</itemPath>
           <itemPath>mcc_generated_files/TCPIPLibrary/tcpip_config.h</itemPath>
           <itemPath>mcc_generated_files/TCPIPLibrary/log_console.h</itemPath>
@@ -59,7 +58,6 @@
           <itemPath>mcc_generated_files/TCPIPLibrary/log.c</itemPath>
           <itemPath>mcc_generated_files/TCPIPLibrary/udpv4.c</itemPath>
           <itemPath>mcc_generated_files/TCPIPLibrary/ipv4.c</itemPath>
-          <itemPath>mcc_generated_files/TCPIPLibrary/dhcp_client.c</itemPath>
           <itemPath>mcc_generated_files/TCPIPLibrary/mac_address.c</itemPath>
           <itemPath>mcc_generated_files/TCPIPLibrary/ETHxxJ6x_driver.c</itemPath>
         </logicalFolder>

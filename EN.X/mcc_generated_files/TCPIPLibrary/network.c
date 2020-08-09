@@ -48,7 +48,6 @@ MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE TER
 #include <time.h>
 #include "network.h"
 #include "tcpip_types.h"
-#include "dhcp_client.h"
 #include "arpv4.h"
 #include "ipv4.h"
 #include "rtcc.h"
@@ -78,7 +77,6 @@ void Network_Init(void)
     ETH_Init();
     ARPV4_Init();
     IPV4_Init();
-    DHCP_init();
     rtcc_init();
     Network_WaitForLink();  
     timersInit();
@@ -103,7 +101,6 @@ void Network_Manage(void)
 
     ETH_EventHandler();
     Network_Read(); // handle any packets that have arrived...
-    DHCP_Manage(); // update the DHCP status every second
 
     // manage any outstanding timeouts
     time(&now);

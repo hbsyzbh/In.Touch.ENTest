@@ -23,20 +23,3 @@
 /**
   Section: Included Files
  */
-
-#include "spi_master.h"
-
-
-const spi_master_functions_t spiMaster[] = {   
-};
-
-//This function serves keep backwards compatibility with older api users
-bool spi_master_open(spi_master_configurations_t config){
-    switch(config){
-        default:
-            return 0;
-    }
-}
-/**
- End of File
- */
