@@ -59,8 +59,8 @@ void ETH_Initialize(void)
     // RXRST Normal; TXRTS Transmit; TXRST Normal; RXEN Receive; DMAST Idle; CSUMEN Disabled; 
     ECON1 = 0x00;
 
-    // ETHEN Disabled; PKTDEC Unchanged; AUTOINC Do not automatically change ERDPT; 
-    ECON2 = 0x00;
+    // ETHEN Enabled; PKTDEC Unchanged; AUTOINC Do not automatically change ERDPT; 
+    ECON2 = 0x20;
 
     // PHYRDY Not ready; BUFER No error; TXABRT Transmit ok; 
     ESTAT = 0x00;

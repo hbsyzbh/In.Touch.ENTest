@@ -567,7 +567,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="ETH" registerAlias="ECON2"/>
-         <value>0</value>
+         <value>32</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="Pin Module" registerAlias="anselRA5" settingAlias="anselRA5" alias="digital"/>
@@ -1479,7 +1479,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="ETH" registerAlias="ECON2" settingAlias="ETHEN"/>
-         <value>Disabled</value>
+         <value>Enabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="EUSART1" registerAlias="TXREG"/>
@@ -3729,7 +3729,11 @@
       </entry>
       <entry>
          <file>mcc_generated_files\eth.c</file>
-         <hash>a148a257529ddabc1b28099586ef84a715452d84591b18f1e4cd71ee17614d45</hash>
+         <hash>109842e015a033bd29eab196d7d6498687f7e66b5d86519288a184e5b7154955</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\eth.h</file>
+         <hash>73e68b2effa0da5a500b19723fab5787d5766eae9ed0ac5639c1573b498607c5</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\interrupt_manager.c</file>
@@ -3738,10 +3742,6 @@
       <entry>
          <file>mcc_generated_files\mcc.c</file>
          <hash>e909b50c3f52187e71c0a0f46c4c44ae27189b44f9a10a3c4c3d574896b4c0d7</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\eth.h</file>
-         <hash>73e68b2effa0da5a500b19723fab5787d5766eae9ed0ac5639c1573b498607c5</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\eusart1.c</file>
