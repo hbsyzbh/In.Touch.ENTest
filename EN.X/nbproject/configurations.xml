@@ -36,6 +36,12 @@
         <itemPath>mcc_generated_files/tmr1.h</itemPath>
         <itemPath>mcc_generated_files/ext_int.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="mrf_89xa_driver"
+                     displayName="mrf_89xa_driver"
+                     projectFiles="true">
+        <itemPath>mrf_89xa_driver/drv_mrf.h</itemPath>
+        <itemPath>mrf_89xa_driver/drv_mrf_89xa.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="SourceFiles" displayName="源文件" projectFiles="true">
       <logicalFolder name="MCC Generated Files"
@@ -69,6 +75,14 @@
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
         <itemPath>mcc_generated_files/tmr1.c</itemPath>
         <itemPath>mcc_generated_files/ext_int.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="mrf_89xa_driver"
+                     displayName="mrf_89xa_driver"
+                     projectFiles="true">
+        <logicalFolder name="src" displayName="src" projectFiles="true">
+          <itemPath>mrf_89xa_driver/test89xa.c</itemPath>
+          <itemPath>mrf_89xa_driver/drv_mrf_89xa.c</itemPath>
+        </logicalFolder>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>maxdone.c</itemPath>
