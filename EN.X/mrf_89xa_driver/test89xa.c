@@ -106,7 +106,7 @@ unsigned char SPIGet(void)
     {
         //MDI SDO
        if(SPI_SDO) {
-           result &= (0x01 << i);
+           result |= (0x01 << i);
        }               
        SPI_SCK = 1;
        SPI_delay();
