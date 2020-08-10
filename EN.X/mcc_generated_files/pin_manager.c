@@ -54,9 +54,9 @@ void PIN_MANAGER_Initialize(void)
     */
     LATE = 0x1C;
     LATD = 0x00;
-    LATA = 0x00;
+    LATA = 0x20;
     LATF = 0x00;
-    LATB = 0x00;
+    LATB = 0x01;
     LATG = 0x00;
     LATC = 0x00;
 
