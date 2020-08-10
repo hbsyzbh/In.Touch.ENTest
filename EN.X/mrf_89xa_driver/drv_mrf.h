@@ -149,8 +149,8 @@ extern BOOL PHY_IRQ1_En;
 #define Config_nCS      IO_RB0_LAT
 #define Data_nCS        IO_RA5_LAT
 
-#define SPI_SDI      IO_RB3_PORT
-#define SPI_SDO      IO_RB4_LAT
+#define SPI_SDI      IO_RB3_LAT
+#define SPI_SDO      IO_RB4_PORT
 #define SPI_SCK      IO_RB5_LAT
 
 void SPIPut(unsigned char);

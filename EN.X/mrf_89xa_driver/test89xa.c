@@ -86,7 +86,8 @@ void SPIPut(unsigned char data)
     SPI_delay();
     for(i = 7; i >= 0; i--)
     {
-       SPI_SDO = ((data & (0x01 << i)) != 0);
+        //MDO SDI
+       SPI_SDI = ((data & (0x01 << i)) != 0);
        SPI_delay();
        SPI_SCK = 1;
        SPI_delay();
@@ -103,7 +104,8 @@ unsigned char SPIGet(void)
     SPI_delay();
     for(i = 7; i >= 0; i--)
     {
-       if(SPI_SDI) {
+        //MDI SDO
+       if(SPI_SDO) {
            result &= (0x01 << i);
        }               
        SPI_SCK = 1;
